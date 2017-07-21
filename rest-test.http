@@ -1,0 +1,12 @@
+{
+    method: 'POST',
+    url: 'http://localhost:3000',
+    requestHeader: {
+        'content-type': 'application/json'
+    },
+    requestBody: {
+        "book_name": "History of Jazz",
+        "book_price": 89.60,
+        "book_edition": 1
+    }
+}
