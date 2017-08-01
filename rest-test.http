@@ -1,12 +1,12 @@
 {
-    method: 'POST',
-    url: 'http://localhost:3000',
+    method: 'DELETE',
+    url: 'http://localhost:3000/?book_name=History+of+Jazz+2',
     requestHeader: {
         'content-type': 'application/json'
     },
     requestBody: {
-        "book_name": "History of Jazz",
-        "book_price": 89.60,
+        "book_name": "History of Jazz 2",
+        "book_price": 60.60,
         "book_edition": 1
     }
 }
