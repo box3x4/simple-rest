@@ -1,12 +1,21 @@
 const express = require('express');
-const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
-const routes = require('./routes/routes');
+const morgan = require('morgan');
+
+const booksRoute = require('./routes/books.route');
+const usersRoute = require('./routes/users.route');
+const authorsRoute = require('./routes/author.route');
 
 const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use('/', routes);
+app.use(morgan('dev'));
+
+app.use('/', [
+    booksRoute,
+    usersRoute,
+    authorsRoute
+]);
 
 module.exports = app;
