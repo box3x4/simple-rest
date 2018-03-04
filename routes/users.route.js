@@ -1,13 +1,10 @@
 const router = require('express').Router();
-const passport = require('passport');
 
-const passportConfig = require('../passport');
-const usersApi = require('../api/users.api');
+const logIn = require('../middlewares/login.middleware');
+const usersService = require('../services/users.service');
 
-router.route('/users/signup')
-    .post(usersApi.userSignUp);
+router.route('/users/signup').post(usersService.userSignUp);
 
-router.route('/users/login')
-    .post(passport.authenticate('local', { session: false }), usersApi.userLogin);
+router.route('/users/login').post(logIn, usersService.userLogin);
 
 module.exports = router;

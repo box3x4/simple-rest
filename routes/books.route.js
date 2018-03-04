@@ -1,14 +1,17 @@
 const router = require('express').Router();
-const passport = require('passport');
 
-const passportConfig = require('../passport');
-const booksApi = require('../api/books.api');
+const booksService = require('../services/books.service');
+const authentication = require('../middlewares/jwt.middleware');
 
-const authentication = passport.authenticate('jwt', { session: false });
+router.use('/books', authentication);
 
-router.route('/books')
-    .get(authentication, booksApi.bookList)
-    .post(authentication, booksApi.bookSubmit)
-    .delete(authentication, booksApi.bookDelete);
+router
+    .route('/books')
+    .get(booksService.bookList)
+    .post(booksService.bookSubmit)
+    .delete(booksService.bookDelete)
+    .put(booksService.bookUpdate);
+
+router.route('/books/q=:bookId').get(booksService.bookListById);
 
 module.exports = router;
